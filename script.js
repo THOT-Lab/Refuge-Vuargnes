@@ -38,6 +38,16 @@ const lightboxImage = document.querySelector("[data-lightbox-img]");
 const lightboxCaption = document.querySelector("[data-lightbox-caption]");
 const closeButton = document.querySelector("[data-close]");
 
+function resetScrollOnFreshVisit() {
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+  }
+}
+
 function renderGallery() {
   const fragment = document.createDocumentFragment();
 
@@ -71,8 +81,10 @@ function closeLightbox() {
   lightboxImage.src = "";
 }
 
+resetScrollOnFreshVisit();
 renderGallery();
 
+window.addEventListener("pageshow", resetScrollOnFreshVisit);
 closeButton.addEventListener("click", closeLightbox);
 
 lightbox.addEventListener("click", (event) => {
