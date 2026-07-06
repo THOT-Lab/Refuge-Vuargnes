@@ -37,7 +37,6 @@ const lightbox = document.querySelector("[data-lightbox]");
 const lightboxImage = document.querySelector("[data-lightbox-img]");
 const lightboxCaption = document.querySelector("[data-lightbox-caption]");
 const closeButton = document.querySelector("[data-close]");
-const header = document.querySelector("[data-header]");
 
 function renderGallery() {
   const fragment = document.createDocumentFragment();
@@ -72,14 +71,8 @@ function closeLightbox() {
   lightboxImage.src = "";
 }
 
-function updateHeader() {
-  header.classList.toggle("is-scrolled", window.scrollY > 30);
-}
-
 renderGallery();
-updateHeader();
 
-window.addEventListener("scroll", updateHeader, { passive: true });
 closeButton.addEventListener("click", closeLightbox);
 
 lightbox.addEventListener("click", (event) => {
